@@ -1,0 +1,43 @@
+<h2>Room details new</h2>
+
+<%= form_for([@room, @room_detail], url: room_room_detail_path ) do |f| %>
+  <% if @room_detail.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@room_detail.errors.count, "error") %> prohibited this room from being saved:</h2>
+
+      <ul>
+        <% @room_detail.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div>
+    <span>Description</span>
+    <%= f.text_area :description %>
+  </div>
+  <div>
+    <span>Bedrooms</span>
+    <%= f.number_field :bedroom %>
+  </div>
+  <div>
+    <span>Check in</span>
+    <%= f.time_select :checkin %>
+  </div>
+  <div>
+    <span>Check Out</span>
+    <%= f.time_select :checkout %>
+  </div>
+  <div>
+    <span>Start day</span>
+    <%= f.date_select :startday %>
+  </div>
+  <div>
+    <span>End day</span>
+    <%= f.date_select :endday %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
