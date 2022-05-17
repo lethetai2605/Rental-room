@@ -5,7 +5,7 @@ class Account < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: [:facebook, :google_oauth2]
   has_many :providers
-  has_one :role
+  belongs_to :role
   has_one :profile
   has_many :rooms, through: :bookings
   has_many :bookings
@@ -27,5 +27,9 @@ class Account < ApplicationRecord
         user.skip_confirmation!
       end
     end
+  end
+
+  def admin?
+    role.name == 'Admin' unless role.nil?
   end
 end

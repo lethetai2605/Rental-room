@@ -68,6 +68,7 @@ GEM
       msgpack (~> 1.2)
     builder (3.2.4)
     byebug (11.1.3)
+    cancancan (3.1.0)
     capybara (3.37.1)
       addressable
       matrix
@@ -92,6 +93,8 @@ GEM
       dotenv (= 2.7.6)
       railties (>= 3.2)
     erubi (1.10.0)
+    faker (2.21.0)
+      i18n (>= 1.8.11, < 2)
     faraday (2.3.0)
       faraday-net_http (~> 2.0)
       ruby2_keywords (>= 0.0.4)
@@ -264,9 +267,11 @@ PLATFORMS
 DEPENDENCIES
   bootsnap (>= 1.4.4)
   byebug
+  cancancan
   capybara (>= 3.26)
   devise
   dotenv-rails
+  faker
   jbuilder (~> 2.7)
   listen (~> 3.3)
   omniauth

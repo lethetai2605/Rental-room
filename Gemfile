@@ -43,6 +43,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'pry-rails'
+  gem 'faker'
 end
 
 group :test do
@@ -58,9 +59,10 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise'
 gem 'dotenv-rails'
-# gem 'omniauth-google-oauth2'
-# gem 'omniauth-rails_csrf_protection'
+
 gem 'omniauth'
 gem "omniauth-google-oauth2"
 gem "omniauth-facebook"
 gem 'omniauth-rails_csrf_protection'
+
+gem 'cancancan'

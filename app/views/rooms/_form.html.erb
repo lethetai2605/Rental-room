@@ -26,8 +26,8 @@
     <span>Price</span>
     <%= f.number_field :price %>
   </div>
-  <%= f.hidden_field :room_type_id, value: 1 %>
 
+  <%= f.select(:room_type_id, RoomType.all.collect {|a| [a.name, a.id]}) %>
   <div class="actions">
     <%= f.submit %>
   </div>

@@ -1,6 +1,7 @@
 class RoomsController < ApplicationController
   before_action :authenticate_account!, only: %i[ new create edit update destroy ]
   before_action :set_room, only: %i[ show edit update destroy ]
+  load_and_authorize_resource
 
   def index
     @rooms = Room.all
