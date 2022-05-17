@@ -1,36 +1,23 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Rooms</h1>
+<div class="row g-3 row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4">
+  <% @rooms.each do |room| %>
+    <div class="col">
+      <div class="card border-0">
+        <%= link_to room do %>
+          <img src="https://kenh14cdn.com/203336854389633024/2022/5/17/photo-1-1652748013972183944163.jpg" class="card-img-top rounded" alt="...">
+        <% end %>
+        <div class="card-body py-1 px-0">
+          <div class="text-muted text-capitalize" style="font-size: 14px;"><%= "#{room.room_type.name}" %></div>
+          <div class="text-truncate text-capitalize"><%= room.name %></div>
+          <div class="fw-bold" style="font-size: 14px;"><%=  number_with_delimiter(room.price)%></div>
+        </div>
+      </div>
+    </div>
+    
+  <% end %>
 
-<table>
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Name</th>
-      <th>Area</th>
-      <th>Address</th>
-      <th>Price</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+</div>
 
-  <tbody>
-    <% @rooms.each do |room| %>
-      <tr>
-        <td><%= room.id %></td>
-        <td><%= room.name %></td>
-        <td><%= room.area %></td>
-        <td><%= room.address %></td>
-        <td><%= room.price %></td>
-
-        <td><%= link_to 'Show', room %></td>
-        <td><%= link_to 'Edit', edit_room_path(room) %></td>
-        <td><%= link_to 'Destroy', room, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
 
 <%= link_to 'New Room', new_room_path %>
