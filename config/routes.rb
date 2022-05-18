@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
+  resources :accounts
   root 'static_pages#home'
+  resources :accounts, only: [:show]
 
   devise_for :accounts,
   path: '',

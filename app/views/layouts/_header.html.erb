@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+<nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
   <div class="container">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="/">
       <img src="https://qph.fs.quoracdn.net/main-qimg-6e4b2e7b2b4b6980805e46f0eebe6b89" alt="" width="30" height="30" class="d-inline-block align-text-top">
       RRRR
     </a>
@@ -8,6 +8,17 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     
+    <form class="navbar-form navbar-left" action="#">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search" name="search">
+        <div class="input-group-btn">
+          <button class="btn btn-default" type="submit">
+            <i class="bi bi-search"></i>
+          </button>
+        </div>
+      </div>
+    </form>
+
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-lg-0">
         <li class="nav-item">
@@ -21,17 +32,25 @@
       <ul class="navbar-nav ms-auto mb-2 bm-lg-0">
         <% if account_signed_in? %> 
           <li class="nav-item">
-            <a class="nav-link text-decoration-underline text-primary" href=""> Name </a>
+            <%= link_to account_path(current_account), class: "nav-link text-black" do %>
+              <span class="bi bi-person-circle"></span>
+          <% end %>
           </li>
           <li class="nav-item">
             <%= link_to "Log out", destroy_account_session_path, class: "nav-link text-black", method: :delete %>
           </li>
         <% else %>
           <li class="nav-item">
-            <%= link_to "Sign up", new_account_registration_path, class: "nav-link text-black" %>
+          <%= link_to new_account_registration_path, class: "nav-link text-black" do %>
+            <span class="bi bi-box-arrow-in-left"></span>
+            Signup
+          <% end %>
           </li>
           <li class="nav-item">
-            <%= link_to "Sign in", new_account_session_path, class: "nav-link text-black" %>
+            <%= link_to new_account_session_path, class: "nav-link text-black" do %>
+              <span class="bi bi-box-arrow-in-right"></span>
+            Login
+            <% end %>
           </li>
         <% end %>
       </ul>

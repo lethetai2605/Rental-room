@@ -14,7 +14,7 @@ ActiveRecord::Schema.define(version: 2022_05_13_023128) do
 
   create_table "accounts", force: :cascade do |t|
     t.string "email"
-    t.integer "role_id", null: false
+    t.integer "role_id", default: 3, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "encrypted_password", default: "", null: false

@@ -3,3 +3,10 @@
 .main {
   min-height: 100vh;
 }
+
+.carousel-inner{
+  max-height: 300px !important;
+}
+
+.alert-alert { @extend .alert-warning; }
+.alert-notice { @extend .alert-success; }
