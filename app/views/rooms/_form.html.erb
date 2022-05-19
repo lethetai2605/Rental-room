@@ -1,34 +1,30 @@
-<%= form_with(model: room) do |f| %>
-  <% if room.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(room.errors.count, "error") %> prohibited this room from being saved:</h2>
-
-      <ul>
-        <% room.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <div>
-    <span>Name</span>
-    <%= f.text_field :name %>
-  </div>
-  <div>
-    <span>Area</span>
-    <%= f.text_field :area %>
-  </div>
-  <div>
-    <span>Address</span>
-    <%= f.text_field :address %>
-  </div>
-  <div>
-    <span>Price</span>
-    <%= f.number_field :price %>
+<%= form_for(room, html: {class: "row g-2"} ) do |f| %>
+  <div class="col-12">
+    <%= f.label :name, "Room's name" %>
+    <%= f.text_field :name, class: "form-control" %>
   </div>
 
-  <%= f.select(:room_type_id, RoomType.all.collect {|a| [a.name, a.id]}) %>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="col-12">
+    <%= f.label :address, "Address" %>
+    <%= f.text_field :address, class: "form-control" %>
   </div>
+
+  <div class="col-sm-4">
+    <%= f.label :area, "Area (m\u00B2)" %>
+    <%= f.number_field :area, class: "form-control" %>
+  </div>
+  <div class="col-sm-4">
+    <%= f.label :price, "Price" %>
+    <%= f.number_field :price, class: "form-control" %>
+  </div>
+  <div class="col-sm-4">
+    <%= f.label :room_type_id, "Type" %>
+    <%= f.collection_select :room_type_id, RoomType.order(:name), :id, :name, {prompt: "Select room type ..."}, {class: "form-select", required: true} %>
+  </div>
+
+  <div class="col-12">
+    <%= f.submit class: "btn btn-primary" %>
+  </div>
+
 <% end %>
+

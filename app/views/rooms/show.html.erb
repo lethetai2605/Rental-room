@@ -1,12 +1,10 @@
-<p id="notice"><%= notice %></p>
-
-<div id="demo" class="carousel slide" data-bs-ride="carousel">
+<div id="room-imgs" class="carousel slide" data-bs-ride="carousel">
 
   <!-- Indicators/dots -->
   <div class="carousel-indicators">
-    <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
-    <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
-    <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+    <button type="button" data-bs-target="#room-imgs" data-bs-slide-to="0" class="active"></button>
+    <button type="button" data-bs-target="#room-imgs" data-bs-slide-to="1"></button>
+    <button type="button" data-bs-target="#room-imgs" data-bs-slide-to="2"></button>
   </div>
 
   <!-- The slideshow/carousel -->
@@ -23,19 +21,27 @@
   </div>
 
   <!-- Left and right controls/icons -->
-  <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+  <button class="carousel-control-prev" type="button" data-bs-target="#room-imgs" data-bs-slide="prev">
     <span class="carousel-control-prev-icon"></span>
   </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+  <button class="carousel-control-next" type="button" data-bs-target="#room-imgs" data-bs-slide="next">
     <span class="carousel-control-next-icon"></span>
   </button>
 </div>
 
+
 <div class="container row">
-  <div class="col-md-8 col-xs-12 pe-5">
-    <div> <%# detail  %>
-      <div class="fs-1">
+  <div class="col-md-8 col-xs-12 mt-3">
+    <div>
+
+      <div class="fs-1 d-flex justify-content-between">
         <%= @room.name.upcase %>
+        <% if account_signed_in? && @room.owner == current_account %>
+          <%= link_to "edit", edit_room_path(@room), class: "btn btn-info p-1 align-self-center"  %>
+        <% end %>
+      </div>
+
+      <div>
       </div>
 
       <div class="mt-4">
@@ -56,27 +62,31 @@
         </div>
       </div>
 
-      <div class="my-3">
-        <%# <%= @room.room_detail.description %> 
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eligendi a recusandae eius reiciendis, ea provident velit autem deleniti? Ipsam voluptatem, ratione mollitia sapiente eum nesciunt repudiandae quisquam minus aliquid nihil.
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem iure, quae laborum tempore harum, rem quaerat deleniti consequuntur repellendus perspiciatis corrupti voluptate nam laudantium eligendi, molestiae sit delectus soluta eos?
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis, nobis! Mollitia illum nostrum, reprehenderit excepturi libero quam? Consectetur deserunt ad eaque inventore nemo dolore id earum vitae atque, dicta laboriosam.
+      <div class="mt-5">
+        <div> <b>Description</b> </div>
+        <%= @room.room_detail.description %>
       </div>
     
     </div>
-
-    <div>
-
-    </div>
   </div>
-  <div class="col-md-4 col-xs-12">
+
+  <div class="col-md-4 col-xs-12 mt-3">
     <div class="border p-3 rounded ">
-      <span class="fs-2">
-        <%= "#{number_with_delimiter(@room.price)}đ" %>
-      </span>
-      <span>
-        <%= "/night" %>
-      </span>
+      <div>
+        <span class="fs-2">
+          <%= "#{number_with_delimiter(@room.price)}đ" %>
+        </span>
+        <span>
+          <%= "/night" %>
+        </span>
+      </div>
+
+      <%= form_for([@room, @room.bookings.build]) do |f| %>
+        <%= f.hidden_field :room_id, value: @room.id%>
+        <%= f.submit "Booking", class: "btn btn-outline-secondary" %>
+        
+      <% end %>
+
     </div>
   </div>
 

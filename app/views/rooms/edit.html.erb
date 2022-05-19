@@ -1,6 +1,86 @@
 <h1>Editing Room</h1>
 
-<%= render 'form', room: @room %>
+
+<%= form_for(@room, html: {class: "row gx-5 gy-3"} ) do |f| %>
+  <%# room info form %>
+  <div class="col-md-6">
+    <div class="row gy-2">
+      <div class="col-12">
+        <%= f.label :name, "Room's name" %>
+        <%= f.text_field :name, class: "form-control" %>
+      </div>
+
+      <div class="col-12">
+        <%= f.label :address, "Address" %>
+        <%= f.text_field :address, class: "form-control" %>
+      </div>
+
+      <div class="col-4">
+        <%= f.label :area, "Area (m\u00B2)" %>
+        <%= f.number_field :area, class: "form-control" %>
+      </div>
+      <div class="col-4">
+        <%= f.label :price, "Price" %>
+        <%= f.number_field :price, class: "form-control" %>
+      </div>
+      <div class="col-4">
+        <%= f.label :room_type_id, "Type" %>
+        <%= f.collection_select :room_type_id, RoomType.order(:name), :id, :name, {prompt: "Select room type ..."}, {class: "form-select", required: true} %>
+      </div>
+    </div>
+  </div>
+
+
+  <%# detail form %>
+  <div class="col-md-6">
+    <div class="row gy-2">
+      <%= f.fields_for :room_detail do |detail_f| %>
+        <div class="col-12">
+          <%= detail_f.label :description, "Description" %>
+          <%= detail_f.text_area :description, rows: 4, class: "form-control" %>
+        </div>
+        <div class="col-4">
+          <%= detail_f.label :bedroom, "Bedroom" %>
+          <%= detail_f.number_field :bedroom, in: 1..10, step: 1, class: "form-control" %>
+        </div>
+        <div class="col-4">
+          <%= detail_f.label :checkin, "Checkin" %>
+          <div class="form-control text-center">
+            <%= detail_f.time_field :checkin,{ class: "border-0"}%>
+          </div>
+        </div> 
+        <div class="col-4">
+          <%= detail_f.label :checkout, "Checkout" %>
+          <div class="form-control text-center">
+            <%= detail_f.time_field :checkout,{ class: "border-0"}%>
+          </div>
+        </div>
+
+        <div class="col-4">
+          <%= detail_f.label :startday, "Start day" %>
+          <div class="form-control text-center">
+            <%= detail_f.date_field :startday, {class: "border-0"}%>
+          </div>
+        </div>
+        <div class="col-4">
+          <%= detail_f.label :endday, "End day" %>
+          <div class="form-control text-center">
+            <%= detail_f.date_field :endday, {class: "border-0"}%>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  
+
+
+  <div class="col-md-6">
+    <%= f.submit class: "btn btn-primary" %>
+  </div>
+
+<% end %>
+
+
 
 <%= link_to 'Show', @room %> |
 <%= link_to 'Back', rooms_path %>

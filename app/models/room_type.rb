@@ -1,3 +1,3 @@
 class RoomType < ApplicationRecord
-  belongs_to :room, optional: true
+  has_many :rooms
 end
