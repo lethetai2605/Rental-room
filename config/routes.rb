@@ -8,5 +8,9 @@ Rails.application.routes.draw do
 
   resources :rooms do
     resource :room_detail
+    resources :bookings
   end
+
+  resources :bookings
+
 end
