@@ -66,3 +66,5 @@ gem "omniauth-facebook"
 gem 'omniauth-rails_csrf_protection'
 
 gem 'cancancan'
+
+gem 'rails_admin'

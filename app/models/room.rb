@@ -3,7 +3,7 @@ class Room < ApplicationRecord
   has_one :room_detail
   belongs_to :room_type
   has_many :bookings 
-  has_many :bookers, through: :bookings, source: :account
+  has_many :guests, through: :bookings, class_name: "Account"
 
   accepts_nested_attributes_for :room_detail
 end

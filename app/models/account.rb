@@ -7,8 +7,8 @@ class Account < ApplicationRecord
   has_many :providers
   belongs_to :role
   has_one :profile
-  has_many :rooms, through: :bookings
   has_many :bookings
+  has_many :rooms, through: :bookings
 
   def self.from_omniauth(auth)
     result = User.where(email: auth.info.email).first

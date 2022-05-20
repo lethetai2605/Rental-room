@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   resources :accounts
   root 'static_pages#home'
   resources :accounts, only: [:show]
