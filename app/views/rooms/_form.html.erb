@@ -22,9 +22,27 @@
     <%= f.collection_select :room_type_id, RoomType.order(:name), :id, :name, {prompt: "Select room type ..."}, {class: "form-select", required: true} %>
   </div>
 
+  <%= f.fields_for :room_detail, RoomDetail.new do |ff| %>
+    <div class="col-sm-3">
+      <%= ff.label :checkin, "Check in" %>
+      <%= ff.time_field :checkin, class: "form-control" %>
+    </div>
+    <div class="col-sm-3">
+      <%= ff.label :checkout, "Check out" %>
+      <%= ff.time_field :checkout, class: "form-control" %>
+    </div>
+    <div class="col-sm-3">
+      <%= ff.label :startday, "Start day" %>
+      <%= ff.date_field :startday, class: "form-control" %>
+    </div>
+    <div class="col-sm-3">
+      <%= ff.label :endday, "End day" %>
+      <%= ff.date_field :endday, class: "form-control" %>
+    </div>
+  <% end %>
+
   <div class="col-12">
     <%= f.submit class: "btn btn-primary" %>
   </div>
-
 <% end %>
 

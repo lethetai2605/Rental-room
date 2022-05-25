@@ -93,10 +93,10 @@ ActiveRecord::Schema.define(version: 2022_05_20_070652) do
   end
 
   create_table "room_details", force: :cascade do |t|
-    t.datetime "checkin"
-    t.datetime "checkout"
-    t.datetime "startday"
-    t.datetime "endday"
+    t.time "checkin"
+    t.time "checkout"
+    t.date "startday"
+    t.date "endday"
     t.text "description"
     t.string "bedroom"
     t.integer "room_id", null: false

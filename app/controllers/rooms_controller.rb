@@ -22,7 +22,7 @@ class RoomsController < ApplicationController
     @room = Room.new(room_params)
     @room.owner = current_account
     if @room.save
-      @room.create_room_detail
+      # @room.create_room_detail
       redirect_to rooms_url, notice: "Room was successfully created."
     else
       render :new, status: :unprocessable_entity

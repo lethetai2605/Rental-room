@@ -1,10 +1,10 @@
 class CreateRoomDetails < ActiveRecord::Migration[6.1]
   def change
     create_table :room_details do |t|
-      t.datetime :checkin
-      t.datetime :checkout
-      t.datetime :startday
-      t.datetime :endday
+      t.time :checkin
+      t.time :checkout
+      t.date :startday
+      t.date :endday
       t.text :description
       t.string :bedroom
 

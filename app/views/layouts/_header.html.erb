@@ -8,7 +8,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     
-    <form class="navbar-form navbar-left" action="#">
+    <%# <form class="navbar-form navbar-left" action="#">
       <div class="input-group">
         <input type="text" class="form-control" placeholder="Search" name="search">
         <div class="input-group-btn">
@@ -17,7 +17,20 @@
           </button>
         </div>
       </div>
-    </form>
+    </form> %>
+
+    <%= form_with url: '/search', method: :get, local: true do |f| %>
+      <div class="input-group">
+        <%= f.text_field :location, class: 'form-control',placeholder: 'Search', value: params[:location] %>
+        <%# <input type="text" class="form-control" placeholder="Search" name="search"> %>
+        <%= f.date_field :checkin, class: 'form-control', value: params[:checkin] %>
+        <div class="input-group-btn">
+          <button class="btn btn-default" type="submit">
+            <i class="bi bi-search"></i>
+          </button>
+        </div>
+      </div>
+    <% end %>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-lg-0">
@@ -54,8 +67,6 @@
           </li>
         <% end %>
       </ul>
-      
-
     </div>
   </div>
 </nav>
