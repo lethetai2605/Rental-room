@@ -46,3 +46,18 @@ body {
   cursor: pointer;
   border: solid 1px #BA68C8
 }
+
+.profile-avatar {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}
+
+.input-avatar {
+  font-size: 0.6em;
+  font-weight: 700;
+  color: rgb(231, 231, 231);
+  background-color: gray;
+  display: inline-block;
+  cursor: pointer;
+}

@@ -44,6 +44,7 @@ group :development do
   gem 'spring'
   gem 'pry-rails'
   gem 'faker'
+  gem 'htmlbeautifier'
 end
 
 group :test do
@@ -68,3 +69,5 @@ gem 'omniauth-rails_csrf_protection'
 gem 'cancancan'
 
 gem 'rails_admin'
+
+gem 'cloudinary'

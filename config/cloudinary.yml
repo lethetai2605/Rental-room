@@ -1,0 +1,18 @@
+development:
+  cloud_name: dpxuzoolb
+  api_key: '321155555229449'
+  api_secret: "545I-40RUOFRp6-GOzS06DWxyaI"
+  enhance_image_tag: true
+  static_file_support: false
+production:
+  cloud_name: dpxuzoolb
+  api_key: '321155555229449'
+  api_secret: "545I-40RUOFRp6-GOzS06DWxyaI"
+  enhance_image_tag: true
+  static_file_support: true
+test:
+  cloud_name: dpxuzoolb
+  api_key: '321155555229449'
+  api_secret: "545I-40RUOFRp6-GOzS06DWxyaI"
+  enhance_image_tag: true
+  static_file_support: false
