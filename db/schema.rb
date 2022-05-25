@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_20_070652) do
+ActiveRecord::Schema.define(version: 2022_05_25_021225) do
 
   create_table "accounts", force: :cascade do |t|
     t.string "email"
@@ -61,6 +61,8 @@ ActiveRecord::Schema.define(version: 2022_05_20_070652) do
     t.integer "room_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "startday"
+    t.datetime "endday"
     t.index ["account_id"], name: "index_bookings_on_account_id"
     t.index ["room_id"], name: "index_bookings_on_room_id"
   end

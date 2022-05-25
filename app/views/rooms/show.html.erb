@@ -83,6 +83,11 @@
 
       <%= form_for([@room, @room.bookings.build]) do |f| %>
         <%= f.hidden_field :room_id, value: @room.id%>
+        <%= f.hidden_field :status, value: 0 %>
+        <div>
+          <%= f.date_field :startday %> - 
+          <%= f.date_field :endday %>
+        </div>
         <%= f.submit "Booking", class: "btn btn-outline-secondary" %>
         
       <% end %>

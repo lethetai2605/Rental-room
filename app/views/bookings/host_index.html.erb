@@ -7,11 +7,11 @@
       <th class="">Room name</th>
       <th class="">Address</th>
       <th class="">Price</th>
+      <th class="">Cost</th>
       <th class="">Start day</th>
       <th class="">End day</th>
       <th class="">Created at</th>
       <th class="">Status</th>
-      <th class="" colspan="2"></th>
     </tr>
   </thead>
 
@@ -31,6 +31,9 @@
           <%= booking.room.price %>
         </td>
         <td class="">
+          <%= booking.cost %>
+        </td>
+        <td class="">
           <%= booking.startday.strftime('%d/%m/%Y') %>
         </td>
         <td class="">
@@ -39,21 +42,19 @@
         <td class="">
           <%= booking.created_at.strftime('%H:%M - %d/%m/%Y') %>
         </td>
-        <td class="">
+        <td class="d-flex justify-content-between">
           <% case booking.status %>
             <% when 0 %>
               <%= "Pending" %>
+            <%= button_to "Accept", booking, method: :patch, remote: true, params: { booking: { status: 2 }} %>
+            <%= button_to "Refuse", booking, method: :patch, remote: true, params: { booking: { status: 1}} %>
             <% when 1 %>
               <%= "Accept" %>
             <% when 2 %>
               <%= "Refuse" %>
           <% end %>
         </td>
-        <td class="">
-          <%= button_to "Accept", booking, method: :patch, remote: true, params: { booking: { status: 2 }} %>
-        <td class="">
-          <%= button_to "Refuse", booking, method: :patch, remote: true, params: { booking: { status: 1}} %>
-        </td>
+          
       </tr>
     <% end %>
   </tbody>
