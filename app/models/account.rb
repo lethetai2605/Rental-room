@@ -32,4 +32,10 @@ class Account < ApplicationRecord
   def admin?
     role.name == 'Admin' unless role.nil?
   end
+  def host?
+    role.name == 'Host' unless role.nil?
+  end
+  def guest?
+    role.name == 'Guest' unless role.nil?
+  end
 end
