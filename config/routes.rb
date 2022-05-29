@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   resources :accounts
   root 'static_pages#home'
+  patch '/rooms/:room_id/bookings/:booking_id/:status_id', to: 'bookings#update'
   resources :accounts, only: [:show] do
     resource :profile
   end

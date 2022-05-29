@@ -5,10 +5,8 @@ class BookingsController < ApplicationController
   def index
     if params[:room_id]
       @bookings = Booking.where(room_id: params[:room_id])
-      render :host_index
     else
       @bookings = Booking.where(account_id: current_account)
-      render :guest_index
     end
   end
 
@@ -23,16 +21,17 @@ class BookingsController < ApplicationController
   end
 
   def update
-    @booking = Booking.find(params[:id])
-    if @booking.update(booking_params)
-      redirect_to room_bookings_path(@booking.room), notice: "update successful"
+    @booking = Booking.find(params[:booking_id])
+    if @booking.room.owner.id == current_account.id
+      @booking.update(status: params[:status_id])
+      # redirect_to room_bookings_path(@booking.room), notice: "update successful"
     else
       redirect_to room_bookings_path(@booking.room), notice: "update failed"
     end
   end
   private
     def booking_params
-      params.require(:booking).permit(:room_id, :status, :startday, :endday)
+      params.require(:booking).permit(:room_id, :startday, :endday)
     end
 
     def set_room

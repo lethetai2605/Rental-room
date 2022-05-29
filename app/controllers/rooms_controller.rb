@@ -4,22 +4,23 @@ class RoomsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @rooms = Room.all
+    if current_account.guest?
+      @rooms = Room.all
+    elsif current_account.host?
+      @rooms = Room.where(owner: current_account)
+    end
   end
 
   def show
   end
 
-  def new
-    @room = Room.new
-  end
+  def new ;end
 
   def edit
     @room.room_detail
   end
 
   def create
-    @room = Room.new(room_params)
     @room.owner = current_account
     if @room.save
       # @room.create_room_detail

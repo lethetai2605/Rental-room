@@ -4,9 +4,7 @@ class ProfilesController < ApplicationController
   load_and_authorize_resource
 
   def create
-  
     if @account.create_profile(profile_params)
- 
       redirect_to account_path(current_account), notice: "Profile was successfully updated."
     else
       redirect_to account_path(current_account), alert: "Invalid input!"

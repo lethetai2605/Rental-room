@@ -1,60 +1,58 @@
-<h1>Bookings</h1>
+<h1>Bookings </h1>
 
 <table class="table table-hover">
   <thead>
     <tr class="">
-      <th class="">Guest</th>
-      <th class="">Room name</th>
-      <th class="">Address</th>
+      <th class="">#</th>
+      <th class="">Customer</th>
       <th class="">Price</th>
-      <th class="">Start day</th>
-      <th class="">End day</th>
-      <th class="">Created at</th>
+      <th class="">Start - End</th>
+      <th class="">In - Out</th>
+      <th class="">Booking Date</th>
       <th class="">Status</th>
       <th class="" colspan="2"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @bookings.each do |booking| %>
+    <% @bookings.each_with_index do |booking, index| %>
       <tr class="">
         <td class="">
-          <%= booking.guest.id %>
+          <%= index + 1 %>
         </td>
         <td class="">
-          <%= booking.room.name %>
-        </td>
-        <td class="">
-          <%= booking.room.address %>
+          <% if booking.guest.profile.present? %>
+            <%= booking.guest.profile.name %>
+          <% end %>
         </td>
         <td class="">
           <%= booking.room.price %>
         </td>
         <td class="">
-          <%= booking.startday.strftime('%d/%m/%Y') %>
+           <%= booking.startday.strftime('%d/%m/%Y') %>-<%= booking.endday.strftime('%d/%m/%Y') %>
         </td>
         <td class="">
-          <%= booking.endday.strftime('%d/%m/%Y') %>
+          <%= booking.room.room_detail.checkin.strftime('%H:%M') %>-<%= booking.room.room_detail.checkout.strftime('%H:%M') %>
         </td>
         <td class="">
           <%= booking.created_at.strftime('%H:%M - %d/%m/%Y') %>
         </td>
         <td class="">
-          <% case booking.status %>
-            <% when 0 %>
-              <%= "Pending" %>
-            <% when 1 %>
-              <%= "Accept" %>
-            <% when 2 %>
-              <%= "Refuse" %>
-          <% end %>
-        </td>
-        <td class="">
-          <%= button_to "Accept", booking, method: :patch, remote: true, params: { booking: { status: 2 }} %>
-        <td class="">
-          <%= button_to "Refuse", booking, method: :patch, remote: true, params: { booking: { status: 1}} %>
+         <%= select_tag :status, options_for_select(Booking.statuses.map {|key, value| [key.titleize, Booking.statuses.key(value)]}, booking.status), class: booking.id %>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<script type="text/javascript">
+  $(document).on("change","#status",function() {
+    var booking_id = $(this).attr('class')
+    var status_id = $('option:selected',this).text().toLowerCase()
+    $.ajax({
+      type: "PATCH",
+      url: "/rooms/" + <%= @bookings.first.room.id %> + "/bookings/" + booking_id + "/" + status_id,
+      data: { booking_id, status_id}
+    })
+  })
+</script>
