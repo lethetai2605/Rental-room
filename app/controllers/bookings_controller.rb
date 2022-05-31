@@ -1,9 +1,9 @@
 class BookingsController < ApplicationController
   before_action :authenticate_account!, only: %i[ index new create update destroy ]
-  before_action :set_room, except: %i[index update]
+  before_action :set_room, except: %i[index update destroy]
 
   def index
-    if params[:room_id]
+    if current_account.host?
       @bookings = Booking.where(room_id: params[:room_id])
     else
       @bookings = Booking.where(account_id: current_account)
@@ -27,6 +27,14 @@ class BookingsController < ApplicationController
       # redirect_to room_bookings_path(@booking.room), notice: "update successful"
     else
       redirect_to room_bookings_path(@booking.room), notice: "update failed"
+    end
+  end
+
+  def destroy
+    @booking = Booking.find(params[:id])
+    if @booking.account_id == current_account.id
+      @booking.destroy
+      redirect_to bookings_url
     end
   end
   private

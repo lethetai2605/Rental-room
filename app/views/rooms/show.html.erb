@@ -88,10 +88,12 @@
           <%= f.date_field :startday %> - 
           <%= f.date_field :endday %>
         </div>
-        <%= f.submit "Booking", class: "btn btn-outline-secondary" %>
-        
+        <% if Booking.find_by(account_id: current_account.id, room_id: @room.id).present? %>
+          <%= f.submit "Booked", disabled: true, class: "btn btn-outline-secondary" %>
+        <% else %>
+          <%= f.submit "Booking", class: "btn btn-outline-secondary" %>
+        <% end %>
       <% end %>
-
     </div>
   </div>
 

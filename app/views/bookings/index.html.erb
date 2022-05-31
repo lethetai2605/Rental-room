@@ -4,12 +4,18 @@
   <thead>
     <tr class="">
       <th class="">#</th>
-      <th class="">Customer</th>
+      <th class="">
+      <% if current_account.host? %>
+        Customer
+      <% elsif current_account.guest? %>
+        Room Name
+      <% end %>
+      </th>
       <th class="">Price</th>
       <th class="">Start - End</th>
       <th class="">In - Out</th>
       <th class="">Booking Date</th>
-      <th class="">Status</th>
+      <th class="">Action</th>
       <th class="" colspan="2"></th>
     </tr>
   </thead>
@@ -21,8 +27,12 @@
           <%= index + 1 %>
         </td>
         <td class="">
-          <% if booking.guest.profile.present? %>
-            <%= booking.guest.profile.name %>
+          <% if current_account.host? %>
+            <% if booking.guest.profile.present? %>
+              <%= booking.guest.profile.name %>
+            <% end %>
+          <% elsif current_account.guest? %>
+            <%= booking.room.name %>
           <% end %>
         </td>
         <td class="">
@@ -38,7 +48,11 @@
           <%= booking.created_at.strftime('%H:%M - %d/%m/%Y') %>
         </td>
         <td class="">
-         <%= select_tag :status, options_for_select(Booking.statuses.map {|key, value| [key.titleize, Booking.statuses.key(value)]}, booking.status), class: booking.id %>
+        <% if current_account.host? %>
+          <%= select_tag :status, options_for_select(Booking.statuses.map {|key, value| [key.titleize, Booking.statuses.key(value)]}, booking.status), class: booking.id %>
+        <% elsif current_account.guest? %>
+          <%= link_to 'Cancel', booking_url(booking), method: :delete, data: { confirm: 'Are you sure?' } %>
+        <% end %>
         </td>
       </tr>
     <% end %>
@@ -51,7 +65,7 @@
     var status_id = $('option:selected',this).text().toLowerCase()
     $.ajax({
       type: "PATCH",
-      url: "/rooms/" + <%= @bookings.first.room.id %> + "/bookings/" + booking_id + "/" + status_id,
+      url: "/rooms/" + <%= @bookings.first.room.id if @bookings.exists? %> + "/bookings/" + booking_id + "/" + status_id,
       data: { booking_id, status_id}
     })
   })
