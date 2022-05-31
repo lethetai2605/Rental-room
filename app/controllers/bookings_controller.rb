@@ -32,7 +32,7 @@ class BookingsController < ApplicationController
 
   def destroy
     @booking = Booking.find(params[:id])
-    if @booking.account_id == current_account.id
+    if @booking.account_id == current_account.id && @booking.status == "pending"
       @booking.destroy
       redirect_to bookings_url
     end
