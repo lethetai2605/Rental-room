@@ -51,7 +51,13 @@
         <% if current_account.host? %>
           <%= select_tag :status, options_for_select(Booking.statuses.map {|key, value| [key.titleize, Booking.statuses.key(value)]}, booking.status), class: booking.id %>
         <% elsif current_account.guest? %>
-          <%= link_to 'Cancel', booking_url(booking), method: :delete, data: { confirm: 'Are you sure?' } %>
+          <% if booking.status == "pending" %>
+            <%= button_to 'Cancel', booking_url(booking), method: :delete, data: { confirm: 'Are you sure?' } %>
+          <% elsif booking.status == "accept" %>
+            <button disabled>Accepted</button>
+          <% elsif booking.status == "refuse" %>
+            <button disabled>Refused</button>
+          <% end %>
         <% end %>
         </td>
       </tr>
