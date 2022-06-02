@@ -1,6 +1,13 @@
 <%= form_for(room, html: {class: "row g-2"} ) do |f| %>
+    <% if room.errors.any? %>
+    <ul>
+    <% room.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  <% end %>
   <div class="col-12">
-    <%= f.label :name, "Room's name" %>
+    <%= f.label :name, "Room name" %>
     <%= f.text_field :name, class: "form-control" %>
   </div>
 
@@ -33,11 +40,11 @@
     </div>
     <div class="col-sm-3">
       <%= ff.label :startday, "Start day" %>
-      <%= ff.date_field :startday, class: "form-control" %>
+      <%= ff.date_field :startday, class: "form-control", required: true %>
     </div>
     <div class="col-sm-3">
       <%= ff.label :endday, "End day" %>
-      <%= ff.date_field :endday, class: "form-control" %>
+      <%= ff.date_field :endday, class: "form-control", required: true %>
     </div>
   <% end %>
 
@@ -45,4 +52,3 @@
     <%= f.submit class: "btn btn-primary" %>
   </div>
 <% end %>
-

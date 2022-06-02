@@ -2,7 +2,13 @@
 
 
 <%= form_for(@room, html: {class: "row gx-5 gy-3"} ) do |f| %>
-  <%# room info form %>
+  <% if @room.errors.any? %>
+    <ul>
+    <% @room.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  <% end %>
   <div class="col-md-6">
     <div class="row gy-2">
       <div class="col-12">

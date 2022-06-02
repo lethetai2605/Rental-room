@@ -40,8 +40,7 @@
           <%= link_to "edit", edit_room_path(@room), class: "btn btn-info p-1 align-self-center"  %>
         <% end %>
       </div>
-
-      <div>f
+      <div>
       </div>
 
       <div class="mt-4">
@@ -82,11 +81,13 @@
       </div>
 
       <%= form_for([@room, @room.bookings.build]) do |f| %>
+        <% @room.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
         <%= f.hidden_field :room_id, value: @room.id%>
-        <%= f.hidden_field :status, value: 0 %>
         <div>
-          <%= f.date_field :startday %> - 
-          <%= f.date_field :endday %>
+          <%= f.date_field :startday, required: true %> - 
+          <%= f.date_field :endday, required: true %>
         </div>
         <% if Booking.find_by(account_id: current_account.id, room_id: @room.id).present? %>
           <%= f.submit "Booked", disabled: true, class: "btn btn-outline-secondary" %>
@@ -96,5 +97,14 @@
       <% end %>
     </div>
   </div>
-
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $.validator.addMethod("endDate", function(value, element) {
+            var startDate = $('#booking_startday').val();
+            alert(startDate)
+            return Date.parse(startDate) <= Date.parse(value) || value == "";
+        }, "* End date must be after start date");
+        $('#formId').validate();
+    });

@@ -6,4 +6,7 @@ class Room < ApplicationRecord
   has_many :guests, through: :bookings, class_name: "Account"
 
   accepts_nested_attributes_for :room_detail
+
+  validates :address, :name, presence: {message: "is require"}
+  validates :area, :price, numericality: { only_decimal: true, greater_than_or_equal_to: 0 }
 end
