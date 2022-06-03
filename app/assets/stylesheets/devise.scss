@@ -1,0 +1,45 @@
+$devise-image: "devise/devise_image.jpeg";
+
+.devise-body {
+  height: 100vh;
+  background: rgb(197, 188, 188);
+}
+
+.login-bg {
+  background: asset_url($devise-image);
+  background-position: center;
+  background-size: cover;
+}
+
+form.user {
+  .custom-checkbox.small {
+    label {
+      line-height: 1.5rem;
+    }
+  }
+
+  .form-control-user {
+    font-size: 1rem;
+    border-radius: 5rem;
+    padding: 0.8rem 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .btn-user,
+  .btn-sns {
+    font-size: 1rem;
+    border-radius: 5rem;
+    padding: 0.8rem 1rem;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .btn-facebook {
+    background: #415d97;
+    color: white;
+  }
+
+  .btn-facebook:hover {
+    background: #2d509c;
+  }
+}
