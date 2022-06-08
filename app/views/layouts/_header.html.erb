@@ -42,7 +42,9 @@
             <li class="nav-item"><a class="nav-link text-black" href="/rooms">Host</a></li>              
           <% elsif current_account.guest? %>
             <li class="nav-item"><a class="nav-link text-black" href="/rooms">List Room</a></li>
-            <li class="nav-item"><a class="nav-link text-black" href="/bookings">List Booking</a></li>            
+            <li class="nav-item"><a class="nav-link text-black" href="/bookings">List Booking</a></li>    
+          <% elsif current_account.admin? %>
+            <li class="nav-item"><a class="nav-link text-black" href="/admin">Dashboard</a></li>              
           <% end %>
         <% end %>
       </ul>

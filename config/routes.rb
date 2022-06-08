@@ -1,7 +1,19 @@
 Rails.application.routes.draw do
+  namespace :admin do
+      resources :profits, only: [:index]
+      resources :accounts
+      resources :profiles
+      resources :providers
+      resources :room_details
+      resources :room_types
+      resources :rooms
+      resources :roles
+      resources :bookings
+
+      root to: "profits#index"
+    end
   get 'profiles/update'
   get '/search', to: 'static_pages#search', as: 'room_search'
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   resources :accounts
   root 'static_pages#home'
   patch '/rooms/:room_id/bookings/:booking_id/:status_id', to: 'bookings#update'

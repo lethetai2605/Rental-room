@@ -68,6 +68,8 @@ gem 'omniauth-rails_csrf_protection'
 
 gem 'cancancan'
 
-gem 'rails_admin'
+gem 'administrate'
+gem 'chartkick'
+gem "groupdate"
 
 gem 'cloudinary'
