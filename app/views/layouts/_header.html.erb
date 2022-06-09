@@ -1,39 +1,51 @@
-<nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
-  <div class="container">
+
+<nav class="navbar navbar-expand-sm  navbar-light bg-light sticky-top">
+  <div class="container-fluid">
     <a class="navbar-brand" href="/">
       <img src="https://qph.fs.quoracdn.net/main-qimg-6e4b2e7b2b4b6980805e46f0eebe6b89" alt="" width="30" height="30" class="d-inline-block align-text-top">
       RRRR
     </a>
+
+  <div class="navbar-nav ms-auto d-md-none">
+    <div class="nav-item">
+      <a class="nav-link dropdown me-2" href="#" id="searchDropdown" role="button" data-bs-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        <i class="bi bi-search"></i>
+      </a>
+
+      <div class="dropdown-menu dropdown-menu-right p-2 shadow" id="searchDropdownForm" aria-labelledby="searchDropdown">
+        <%= form_with url: '/search', method: :get, local: true, html: {class: ""} do |f| %>
+          <div class="input-group border-0">
+            <%= f.text_field :location, class: 'form-control',placeholder: 'Search for ...', value: params[:location] %>
+            <%= f.date_field :checkin, class: 'form-control', value: params[:checkin] %>
+          
+              <button class="btn btn-primary" type="submit">
+                <i class="bi bi-search"></i>
+              </button>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  
+  </div>
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    
-    <%# <form class="navbar-form navbar-left" action="#">
-      <div class="input-group">
-        <input type="text" class="form-control" placeholder="Search" name="search">
-        <div class="input-group-btn">
-          <button class="btn btn-default" type="submit">
-            <i class="bi bi-search"></i>
-          </button>
-        </div>
-      </div>
-    </form> %>
 
-    <%= form_with url: '/search', method: :get, local: true do |f| %>
+    <%= form_with url: '/search', method: :get, local: true, html: {class: "d-none d-md-block me-auto"} do |f| %>
       <div class="input-group">
-        <%= f.text_field :location, class: 'form-control',placeholder: 'Search', value: params[:location] %>
-        <%# <input type="text" class="form-control" placeholder="Search" name="search"> %>
+        <%= f.text_field :location, class: 'form-control',placeholder: 'Search for ...', value: params[:location] %>
         <%= f.date_field :checkin, class: 'form-control', value: params[:checkin] %>
-        <div class="input-group-btn">
-          <button class="btn btn-default" type="submit">
+      
+          <button class="btn btn-primary" type="submit">
             <i class="bi bi-search"></i>
           </button>
-        </div>
       </div>
     <% end %>
-
+    
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-lg-0">
+      <ul class="navbar-nav ms-auto">
         <li class="nav-item">
           <a class="nav-link text-black" href="#">Guide</a>
         </li>
@@ -42,14 +54,12 @@
             <li class="nav-item"><a class="nav-link text-black" href="/rooms">Host</a></li>              
           <% elsif current_account.guest? %>
             <li class="nav-item"><a class="nav-link text-black" href="/rooms">List Room</a></li>
-            <li class="nav-item"><a class="nav-link text-black" href="/bookings">List Booking</a></li>    
-          <% elsif current_account.admin? %>
-            <li class="nav-item"><a class="nav-link text-black" href="/admin">Dashboard</a></li>              
+            <li class="nav-item"><a class="nav-link text-black" href="/bookings">List Booking</a></li>            
           <% end %>
         <% end %>
       </ul>
 
-      <ul class="navbar-nav ms-auto mb-2 bm-lg-0">
+      <ul class="navbar-nav">
         <% if account_signed_in? %> 
           <li class="nav-item">
             <%= link_to account_path(current_account), class: "nav-link text-black" do %>
@@ -61,19 +71,21 @@
           </li>
         <% else %>
           <li class="nav-item">
-          <%= link_to new_account_registration_path, class: "nav-link text-black" do %>
-            <span class="bi bi-box-arrow-in-left"></span>
+          <%= link_to new_account_registration_path, class: "nav-link text-black d-flex" do %>
+            <span class="bi bi-box-arrow-in-left me-1"></span>
             Signup
           <% end %>
           </li>
           <li class="nav-item">
-            <%= link_to new_account_session_path, class: "nav-link text-black" do %>
-              <span class="bi bi-box-arrow-in-right"></span>
-            Login
+            <%= link_to new_account_session_path, class: "nav-link text-black d-flex" do %>
+              <span class="bi bi-box-arrow-in-right me-1"></span>
+              Login
             <% end %>
           </li>
         <% end %>
       </ul>
     </div>
+    
   </div>
+
 </nav>
