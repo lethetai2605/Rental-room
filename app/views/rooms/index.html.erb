@@ -20,9 +20,11 @@
   <% end %>
 </div>
 <% elsif current_account.host? %>
+  
+  <div class="table-responsive">
   <%= link_to 'New Room', new_room_path, :class => "btn btn-primary float-end" %>
-  <table class="table table-striped">
-  <thead>
+  <table class="table table-striped ">
+    <thead>
     <tr>
       <th scope="col">#</th>
       <th scope="col">Room Name</th>
@@ -31,8 +33,8 @@
       <th scope="col">Price</th>
       <th scope="col" colspan="4">Action</th>
     </tr>
-  </thead>
-  <tbody>
+    </thead>
+    <tbody>
     <% @rooms.each_with_index do |room, index| %>
       <tr>
         <th scope="row"><%= index + 1 %></th>
@@ -50,6 +52,7 @@
         <td><%= link_to 'Destroy', room, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>
+  </div>
 <% end %>
