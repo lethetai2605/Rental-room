@@ -1,57 +1,56 @@
-
-  <div class="container rounded bg-white mt-5 mb-5">
-    <%= form_with(model: [@account, @account.profile], url: account_profile_path(@account)) do |f| %>
-      <div class="row">
-        <div class="col-lg-3 border-right">
-          <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-            <% if @account.profile.avatar.attached? %>
-              <%= cl_image_tag @account.profile.avatar.key, class: 'rounded-circle mt-5 profile-avatar' %>
-            <% end %>
-            <span class="font-weight-bold"><%= @account.profile.name %></span>
-            <span class="text-black-50"><%= @account.email %></span>
-            <span><%= f.file_field :avatar, class: "input-avatar" %></span>
-          </div>
+<div class="container rounded bg-white mt-5 mb-5">
+  <%= form_with(model: [@account, @account.profile], url: account_profile_path(@account)) do |f| %>
+    <div class="row">
+      <div class="col-lg-3 border-right">
+        <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+          <% if @account.profile.avatar.attached? %>
+            <%= cl_image_tag @account.profile.avatar.key, class: 'rounded-circle mt-5 profile-avatar' %>
+          <% end %>
+          <span class="font-weight-bold"><%= @account.profile.name %></span>
+          <span class="text-black-50"><%= @account.email %></span>
+          <span><%= f.file_field :avatar, class: "input-avatar" %></span>
         </div>
-        <div class="col-lg-5 border-right">
-          <div class="p-3 py-5">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-              <h4 class="text-right">Profile Settings</h4>
+      </div>
+      <div class="col-lg-5 border-right">
+        <div class="p-3 py-5">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h4 class="text-right">Profile Settings</h4>
+          </div>
+          <div class="row mt-2">
+            <div class="col-md-12">
+              <%= f.label :name, class: 'labels' %>
+              <%= f.text_field :name , class: 'form-control', placeholder: 'Enter your name' %>
             </div>
-            <div class="row mt-2">
+          </div>
+          <div class="row mt-3">
+            <div class="col-md-12">
+              <%= f.label :phone, 'Phone Number', class: 'labels' %>
+              <%= f.text_field :phone, class: 'form-control', placeholder: 'Enter phone number' %>
+            </div>
+            <div class="col-md-12">
+              <%= f.label :address, class: 'labels' %>
+              <%= f.text_field :address, class: 'form-control', placeholder: 'Enter address' %>
               <div class="col-md-12">
-                <%= f.label :name, class: 'labels' %>
-                <%= f.text_field :name , class: 'form-control', placeholder: 'Enter your name' %>
+                <%= f.label :dob, 'Date Of Birth',class: 'labels' %>
+                <%= f.date_field :dob, as: :date, value: f.object.try(:strftime,"%d/%m/%Y"), class: 'form-control' %>
+              </div>
+              <div class="col-md-12">
+                <%= f.label :gender, class: 'labels' %>
+                <%= f.select :gender, options_for_select(Profile.genders.map {|key, value| [key.titleize, Profile.genders.key(value)]}, @account.profile.gender) %>
               </div>
             </div>
-            <div class="row mt-3">
-              <div class="col-md-12">
-                <%= f.label :phone, 'Phone Number', class: 'labels' %>
-                <%= f.text_field :phone, class: 'form-control', placeholder: 'Enter phone number' %>
-              </div>
-              <div class="col-md-12">
-                <%= f.label :address, class: 'labels' %>
-                <%= f.text_field :address, class: 'form-control', placeholder: 'Enter address' %>
-                <div class="col-md-12">
-                  <%= f.label :dob, 'Date Of Birth',class: 'labels' %>
-                  <%= f.date_field :dob, as: :date, value: f.object.try(:strftime,"%d/%m/%Y"), class: 'form-control' %>
-                </div>
-                <div class="col-md-12">
-                  <%= f.label :gender, class: 'labels' %>
-                  <%= f.select :gender, options_for_select(Profile.genders.map {|key, value| [key.titleize, Profile.genders.key(value)]}, @account.profile.gender) %>
-                </div>
-              </div>
-              <div class="d-flex mt-2">
-                <div class="me-3">
-                  <%= f.submit 'Save Profile', class: 'btn btn-primary profile-button' %>
-                </div>
-              </div>
-            <% end %>
             <div class="d-flex mt-2">
-              <div ><%= button_to "Edit Password", edit_account_registration_path, class: "btn btn-primary profile-button", method: :get %></div>
+              <div class="me-3">
+                <%= f.submit 'Save Profile', class: 'btn btn-primary profile-button' %>
+              </div>
             </div>
+          <% end %>
+          <div class="d-flex mt-2">
+            <div ><%= button_to "Edit Password", edit_account_registration_path, class: "btn btn-primary profile-button", method: :get %></div>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
 </div>

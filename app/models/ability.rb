@@ -7,10 +7,9 @@ class Ability
     account ||= Account.new
 
     can :show, Account do |acc|
-
       acc.id == account.id
     end
-    can [:create, :update], Profile
+    can %i[create update], Profile
 
     if account.admin?
       can :access, :rails_admin
@@ -18,7 +17,7 @@ class Ability
       can :manage, :all
     elsif account.host?
       can :create, Room
-      can :manage, Room do |room|  
+      can :manage, Room do |room|
         room.try(:owner) == account
       end
     elsif account.guest?

@@ -1,12 +1,10 @@
 <h1>Editing Room</h1>
-
-
 <%= form_for(@room, html: {class: "row gx-5 gy-3"} ) do |f| %>
   <% if @room.errors.any? %>
     <ul>
-    <% @room.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
+      <% @room.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
     </ul>
   <% end %>
   <div class="col-md-6">
@@ -15,12 +13,10 @@
         <%= f.label :name, "Room's name" %>
         <%= f.text_field :name, class: "form-control" %>
       </div>
-
       <div class="col-12">
         <%= f.label :address, "Address" %>
         <%= f.text_field :address, class: "form-control" %>
       </div>
-
       <div class="col-4">
         <%= f.label :area, "Area (m\u00B2)" %>
         <%= f.number_field :area, class: "form-control" %>
@@ -35,8 +31,6 @@
       </div>
     </div>
   </div>
-
-
   <%# detail form %>
   <div class="col-md-6">
     <div class="row gy-2">
@@ -54,14 +48,13 @@
           <div class="form-control text-center">
             <%= detail_f.time_field :checkin,{ class: "border-0"}%>
           </div>
-        </div> 
+        </div>
         <div class="col-4">
           <%= detail_f.label :checkout, "Checkout" %>
           <div class="form-control text-center">
             <%= detail_f.time_field :checkout,{ class: "border-0"}%>
           </div>
         </div>
-
         <div class="col-4">
           <%= detail_f.label :startday, "Start day" %>
           <div class="form-control text-center">
@@ -77,16 +70,9 @@
       <% end %>
     </div>
   </div>
-  
-
-
   <div class="col-md-6">
     <%= f.submit class: "btn btn-primary" %>
   </div>
-
 <% end %>
-
-
-
 <%= link_to 'Show', @room %> |
 <%= link_to 'Back', rooms_path %>

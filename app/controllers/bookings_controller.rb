@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class BookingsController < ApplicationController
-  before_action :authenticate_account!, only: %i[ index new create update destroy ]
+  before_action :authenticate_account!, only: %i[index new create update destroy]
   before_action :set_room, except: %i[index update destroy]
 
   def index
@@ -16,7 +18,7 @@ class BookingsController < ApplicationController
     @booking.cost = @room.price * (@booking.endday - @booking.startday).to_i / 1.day
 
     if @booking.save
-      redirect_to @room, notice: "Successful booking!"
+      redirect_to @room, notice: 'Successful booking!'
     end
   end
 
@@ -24,25 +26,27 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:booking_id])
     if @booking.room.owner.id == current_account.id
       @booking.update(status: params[:status_id])
-      # redirect_to room_bookings_path(@booking.room), notice: "update successful"
+      # redirect_to room_bookings_path(@booking.room), notice: 'update successful'
     else
-      redirect_to room_bookings_path(@booking.room), notice: "update failed"
+      redirect_to room_bookings_path(@booking.room), notice: 'update failed'
     end
   end
 
   def destroy
     @booking = Booking.find(params[:id])
-    if @booking.account_id == current_account.id && @booking.status == "pending"
+    if @booking.account_id == current_account.id && @booking.status == 'pending'
       @booking.destroy
       redirect_to bookings_url
     end
   end
-  private
-    def booking_params
-      params.require(:booking).permit(:room_id, :startday, :endday)
-    end
 
-    def set_room
-      @room = Room.find(params[:room_id])
-    end
+  private
+
+  def booking_params
+    params.require(:booking).permit(:room_id, :startday, :endday)
+  end
+
+  def set_room
+    @room = Room.find(params[:room_id])
+  end
 end

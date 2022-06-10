@@ -1,5 +1,4 @@
 <%= line_chart Booking.where(status: :accept).group_by_month(:startday, format: "%b %Y").sum(:cost), xtitle: "Time (Month)", ytitle: "Profit (VND)", download: {background: "#ffffff"} %>
-
 <table class="table table-bordered">
   <thead>
     <tr>
@@ -15,23 +14,23 @@
     <% (1..12).each do |month| %>
       <% current_month = Booking.specific_month(month) %>
       <% if current_month.exists? %>
-      <tr>
-        <th scope="row"><%=  month %></th>
-        <td><%= current_month.count %></td>
-        <td><%= current_month.where(status: :pending).count %></td>
-        <td><%= current_month.where(status: :accept).count %></td>
-        <td><%= current_month.where(status: :refuse).count %></td>
-        <td><%= current_month.where(status: :accept).sum(:cost) %></td>
-      </tr>
+        <tr>
+          <th scope="row"><%=  month %></th>
+          <td><%= current_month.count %></td>
+          <td><%= current_month.where(status: :pending).count %></td>
+          <td><%= current_month.where(status: :accept).count %></td>
+          <td><%= current_month.where(status: :refuse).count %></td>
+          <td><%= current_month.where(status: :accept).sum(:cost) %></td>
+        </tr>
       <% end %>
     <% end %>
   </tbody>
   <tfoot>
-     <th scope="col">Total</th>
-     <td><%= Booking.count %></td>
-     <td><%= Booking.where(status: :pending).count %></td>
-     <td><%= Booking.where(status: :accept).count %></td>
-     <td><%= Booking.where(status: :refuse).count %></td>
-     <td><%= Booking.where(status: :accept).sum(:cost) %></td>
+    <th scope="col">Total</th>
+    <td><%= Booking.count %></td>
+    <td><%= Booking.where(status: :pending).count %></td>
+    <td><%= Booking.where(status: :accept).count %></td>
+    <td><%= Booking.where(status: :refuse).count %></td>
+    <td><%= Booking.where(status: :accept).sum(:cost) %></td>
   </tfoot>
 </table>

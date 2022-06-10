@@ -1,58 +1,56 @@
 <% if current_account.guest? %>
-<br>
-<br>
-<p id="notice"><%= notice %></p>
-
-<div class="row g-3 row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4">
-  <% @rooms.each do |room| %>
-    <div class="col">
-      <div class="card border-0">
-        <%= link_to room do %>
-          <img src="https://kenh14cdn.com/203336854389633024/2022/5/17/photo-1-1652748013972183944163.jpg" class="card-img-top rounded" alt="...">
-        <% end %>
-        <div class="card-body py-1 px-0">
-          <div class="text-muted text-capitalize" style="font-size: 14px;"><%= "#{room.room_type.name}" %></div>
-          <div class="text-truncate text-capitalize"><%= room.name %></div>
-          <div class="fw-bold" style="font-size: 14px;"><%=  number_with_delimiter(room.price)%></div>
+  <br>
+  <br>
+  <p id="notice"><%= notice %></p>
+  <div class="row g-3 row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4">
+    <% @rooms.each do |room| %>
+      <div class="col">
+        <div class="card border-0">
+          <%= link_to room do %>
+            <img src="https://kenh14cdn.com/203336854389633024/2022/5/17/photo-1-1652748013972183944163.jpg" class="card-img-top rounded" alt="...">
+          <% end %>
+          <div class="card-body py-1 px-0">
+            <div class="text-muted text-capitalize" style="font-size: 14px;"><%= "#{room.room_type.name}" %></div>
+            <div class="text-truncate text-capitalize"><%= room.name %></div>
+            <div class="fw-bold" style="font-size: 14px;"><%=  number_with_delimiter(room.price)%></div>
+          </div>
         </div>
       </div>
-    </div>    
-  <% end %>
-</div>
-<% elsif current_account.host? %>
-  
-  <div class="table-responsive">
-  <%= link_to 'New Room', new_room_path, :class => "btn btn-primary float-end" %>
-  <table class="table table-striped ">
-    <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Room Name</th>
-      <th scope="col">Area</th>
-      <th scope="col">Address</th>
-      <th scope="col">Price</th>
-      <th scope="col" colspan="4">Action</th>
-    </tr>
-    </thead>
-    <tbody>
-    <% @rooms.each_with_index do |room, index| %>
-      <tr>
-        <th scope="row"><%= index + 1 %></th>
-        <td><%= room.name %></td>
-        <td><%= room.area %></td>
-        <td><%= room.address %></td>
-        <td><%= room.price %></td>
-        <td>
-        <% if room.bookings.exists? %>
-        <%= link_to 'Booking', room_bookings_path(room) %>
-        <% end %>
-        </td>
-        <td><%= link_to 'Detail', room %></td>
-        <td><%= link_to 'Edit', edit_room_path(room) %></td>
-        <td><%= link_to 'Destroy', room, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
     <% end %>
-    </tbody>
-  </table>
+  </div>
+<% elsif current_account.host? %>
+  <div class="table-responsive">
+    <%= link_to 'New Room', new_room_path, :class => "btn btn-primary float-end" %>
+    <table class="table table-striped ">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Room Name</th>
+          <th scope="col">Area</th>
+          <th scope="col">Address</th>
+          <th scope="col">Price</th>
+          <th scope="col" colspan="4">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @rooms.each_with_index do |room, index| %>
+          <tr>
+            <th scope="row"><%= index + 1 %></th>
+            <td><%= room.name %></td>
+            <td><%= room.area %></td>
+            <td><%= room.address %></td>
+            <td><%= room.price %></td>
+            <td>
+              <% if room.bookings.exists? %>
+                <%= link_to 'Booking', room_bookings_path(room) %>
+              <% end %>
+            </td>
+            <td><%= link_to 'Detail', room %></td>
+            <td><%= link_to 'Edit', edit_room_path(room) %></td>
+            <td><%= link_to 'Destroy', room, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
 <% end %>

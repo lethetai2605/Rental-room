@@ -1,15 +1,14 @@
 <h1>Bookings </h1>
-
 <table class="table table-hover">
   <thead>
     <tr class="">
       <th class="">#</th>
       <th class="">
-      <% if current_account.host? %>
-        Customer
-      <% elsif current_account.guest? %>
-        Room Name
-      <% end %>
+        <% if current_account.host? %>
+          Customer
+        <% elsif current_account.guest? %>
+          Room Name
+        <% end %>
       </th>
       <th class="">Price</th>
       <th class="">Start - End</th>
@@ -19,7 +18,6 @@
       <th class="" colspan="2"></th>
     </tr>
   </thead>
-
   <tbody>
     <% @bookings.each_with_index do |booking, index| %>
       <tr class="">
@@ -39,7 +37,7 @@
           <%= booking.room.price %>
         </td>
         <td class="">
-           <%= booking.startday.strftime('%d/%m/%Y') %>-<%= booking.endday.strftime('%d/%m/%Y') %>
+          <%= booking.startday.strftime('%d/%m/%Y') %>-<%= booking.endday.strftime('%d/%m/%Y') %>
         </td>
         <td class="">
           <%= booking.room.room_detail.checkin.strftime('%H:%M') %>-<%= booking.room.room_detail.checkout.strftime('%H:%M') %>
@@ -48,23 +46,22 @@
           <%= booking.created_at.strftime('%H:%M - %d/%m/%Y') %>
         </td>
         <td class="">
-        <% if current_account.host? %>
-          <%= select_tag :status, options_for_select(Booking.statuses.map {|key, value| [key.titleize, Booking.statuses.key(value)]}, booking.status), class: booking.id %>
-        <% elsif current_account.guest? %>
-          <% if booking.status == "pending" %>
-            <%= button_to 'Cancel', booking_url(booking), method: :delete, data: { confirm: 'Are you sure?' } %>
-          <% elsif booking.status == "accept" %>
-            <button disabled>Accepted</button>
-          <% elsif booking.status == "refuse" %>
-            <button disabled>Refused</button>
+          <% if current_account.host? %>
+            <%= select_tag :status, options_for_select(Booking.statuses.map {|key, value| [key.titleize, Booking.statuses.key(value)]}, booking.status), class: booking.id %>
+          <% elsif current_account.guest? %>
+            <% if booking.status == "pending" %>
+              <%= button_to 'Cancel', booking_url(booking), method: :delete, data: { confirm: 'Are you sure?' } %>
+            <% elsif booking.status == "accept" %>
+              <button disabled>Accepted</button>
+            <% elsif booking.status == "refuse" %>
+              <button disabled>Refused</button>
+            <% end %>
           <% end %>
-        <% end %>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
 <script type="text/javascript">
   $(document).on("change","#status",function() {
     var booking_id = $(this).attr('class')

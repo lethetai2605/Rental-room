@@ -1,21 +1,19 @@
 <%= form_for(room, html: {class: "row g-2"} ) do |f| %>
-    <% if room.errors.any? %>
+  <% if room.errors.any? %>
     <ul>
-    <% room.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
+      <% room.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
     </ul>
   <% end %>
   <div class="col-12">
     <%= f.label :name, "Room name" %>
     <%= f.text_field :name, class: "form-control" %>
   </div>
-
   <div class="col-12">
     <%= f.label :address, "Address" %>
     <%= f.text_field :address, class: "form-control" %>
   </div>
-
   <div class="col-sm-4">
     <%= f.label :area, "Area (m\u00B2)" %>
     <%= f.number_field :area, class: "form-control" %>
@@ -28,7 +26,6 @@
     <%= f.label :room_type_id, "Type" %>
     <%= f.collection_select :room_type_id, RoomType.order(:name), :id, :name, {prompt: "Select room type ..."}, {class: "form-select", required: true} %>
   </div>
-
   <%= f.fields_for :room_detail, RoomDetail.new do |ff| %>
     <div class="col-sm-3">
       <%= ff.label :checkin, "Check in" %>
@@ -47,7 +44,6 @@
       <%= ff.date_field :endday, class: "form-control", required: true %>
     </div>
   <% end %>
-
   <div class="col-12">
     <%= f.submit class: "btn btn-primary" %>
   </div>
