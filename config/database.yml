@@ -5,11 +5,7 @@
 #   gem 'sqlite3'
 #
 production:
-  adapter: postgresql
-  encoding: unicode
-  # For details on connection pooling, see Rails configuration guide
-  # https://guides.rubyonrails.org/configuring.html#database-pooling
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  database: sample_app_production
-  username: sample_app
-  password: <%= ENV['SAMPLE_APP_DATABASE_PASSWORD'] %>
+  <<: *default
+  database: myapp_production
+  username: myapp
+  password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
