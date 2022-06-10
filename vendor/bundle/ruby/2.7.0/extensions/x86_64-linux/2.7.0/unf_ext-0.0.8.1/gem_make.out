@@ -1,0 +1,16 @@
+current directory: /home/thetai2605/Desktop/Rikkei/Rental-room/vendor/bundle/ruby/2.7.0/gems/unf_ext-0.0.8.1/ext/unf_ext
+/home/thetai2605/.rbenv/versions/2.7.2/bin/ruby -I /home/thetai2605/.rbenv/versions/2.7.2/lib/ruby/2.7.0 -r ./siteconf20220610-180737-16ytsnp.rb extconf.rb
+checking for -lstdc++... yes
+creating Makefile
+
+current directory: /home/thetai2605/Desktop/Rikkei/Rental-room/vendor/bundle/ruby/2.7.0/gems/unf_ext-0.0.8.1/ext/unf_ext
+make "DESTDIR=" clean
+
+current directory: /home/thetai2605/Desktop/Rikkei/Rental-room/vendor/bundle/ruby/2.7.0/gems/unf_ext-0.0.8.1/ext/unf_ext
+make "DESTDIR="
+compiling unf.cc
+linking shared-object unf_ext.so
+
+current directory: /home/thetai2605/Desktop/Rikkei/Rental-room/vendor/bundle/ruby/2.7.0/gems/unf_ext-0.0.8.1/ext/unf_ext
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 unf_ext.so ./.gem.20220610-180737-1elzdng

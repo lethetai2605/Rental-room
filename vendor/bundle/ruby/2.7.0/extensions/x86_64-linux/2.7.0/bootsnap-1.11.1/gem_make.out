@@ -1,0 +1,15 @@
+current directory: /home/thetai2605/Desktop/Rikkei/Rental-room/vendor/bundle/ruby/2.7.0/gems/bootsnap-1.11.1/ext/bootsnap
+/home/thetai2605/.rbenv/versions/2.7.2/bin/ruby -I /home/thetai2605/.rbenv/versions/2.7.2/lib/ruby/2.7.0 -r ./siteconf20220610-180737-1nxzao5.rb extconf.rb
+creating Makefile
+
+current directory: /home/thetai2605/Desktop/Rikkei/Rental-room/vendor/bundle/ruby/2.7.0/gems/bootsnap-1.11.1/ext/bootsnap
+make "DESTDIR=" clean
+
+current directory: /home/thetai2605/Desktop/Rikkei/Rental-room/vendor/bundle/ruby/2.7.0/gems/bootsnap-1.11.1/ext/bootsnap
+make "DESTDIR="
+compiling bootsnap.c
+linking shared-object bootsnap/bootsnap.so
+
+current directory: /home/thetai2605/Desktop/Rikkei/Rental-room/vendor/bundle/ruby/2.7.0/gems/bootsnap-1.11.1/ext/bootsnap
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 bootsnap.so ./.gem.20220610-180737-1bac8h0/bootsnap
