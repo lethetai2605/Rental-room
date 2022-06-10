@@ -118,5 +118,6 @@ Rails.application.configure do
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
   config.active_storage.service = :cloudinary
-  config.assets.compile = true 
+  config.assets.compile = true
+  config.serve_static_assets = true
 end
