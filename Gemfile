@@ -75,3 +75,4 @@ gem 'chartkick'
 gem "groupdate"
 
 gem 'cloudinary'
+gem 'rake'
