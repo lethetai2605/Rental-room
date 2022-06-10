@@ -78,3 +78,5 @@ gem 'cloudinary'
 
 gem 'pg', :group => :production
 gem 'mysql2' , :group => [:development, :test]
+gem 'rake'
+gem 'rack-timeout'
