@@ -32,7 +32,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rubocop', require: false
-  gem 'sqlite3', '~> 1.4'
+  gem 'sqlite3', '~> 1.4.1'
 end
 
 group :development do
@@ -75,4 +75,7 @@ gem 'chartkick'
 gem "groupdate"
 
 gem 'cloudinary'
-gem 'rake'
+
+group :production do
+  gem 'pg', '1.1.4'
+end
