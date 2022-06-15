@@ -120,5 +120,4 @@ Rails.application.configure do
   config.active_storage.service = :cloudinary
   config.assets.compile = true
   config.serve_static_assets = true
-  config.public_file_server.enabled = true
 end

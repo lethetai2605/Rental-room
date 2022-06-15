@@ -70,7 +70,7 @@ gem 'omniauth-rails_csrf_protection'
 
 gem 'cancancan'
 
-gem 'administrate'
+gem "administrate", github: "n-studio/administrate", branch: "compile-assets"
 gem 'chartkick'
 gem "groupdate"
 

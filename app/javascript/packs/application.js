@@ -13,6 +13,7 @@ import "channels"
 import "bootstrap"
 import "../stylesheets/application.scss"
 import 'bootstrap-icons/font/bootstrap-icons.css'
+
 require("jquery")
 require("chartkick")
 require("chart.js")
