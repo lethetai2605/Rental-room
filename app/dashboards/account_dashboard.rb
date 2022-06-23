@@ -47,10 +47,7 @@ class AccountDashboard < Administrate::BaseDashboard
     email
     created_at
     updated_at
-    encrypted_password
-    reset_password_token
-    reset_password_sent_at
-    remember_created_at
+
   ].freeze
 
   # FORM_ATTRIBUTES
@@ -63,10 +60,7 @@ class AccountDashboard < Administrate::BaseDashboard
     bookings
     rooms
     email
-    encrypted_password
-    reset_password_token
-    reset_password_sent_at
-    remember_created_at
+
   ].freeze
 
   # COLLECTION_FILTERS
@@ -84,7 +78,7 @@ class AccountDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how accounts are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(account)
-  #   "Account ##{account.id}"
-  # end
+  def display_resource(account)
+    account.profile.present? ? account.profile.name : "Account ##{account.id}"
+  end
 end
