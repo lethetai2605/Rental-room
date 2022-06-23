@@ -3,7 +3,6 @@ Rails.application.routes.draw do
       resources :profits, only: [:index]
       resources :accounts
       resources :profiles
-      resources :providers
       resources :room_details
       resources :room_types
       resources :rooms
